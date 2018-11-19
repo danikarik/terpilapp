@@ -1,14 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-
-class User(AbstractUser):
-    def get_username(self):
-        if self.profile.show_name:
-            return self.get_full_name()
-        return self.username
 
 
 class Profile(models.Model):
@@ -16,8 +9,8 @@ class Profile(models.Model):
     show_name = models.BooleanField('Показать имя на сайте', default=False)
 
     class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
+        verbose_name = 'Профайл'
+        verbose_name_plural = 'Профайл'
 
     def __str__(self):
         return self.user.get_username()
